@@ -1,0 +1,100 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema crm
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema crm
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `crm` DEFAULT CHARACTER SET hebrew ;
+USE `crm` ;
+
+-- -----------------------------------------------------
+-- Table `crm`.`professions`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `crm`.`professions` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = hebrew;
+
+
+-- -----------------------------------------------------
+-- Table `crm`.`products`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `crm`.`products` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `product_name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = hebrew;
+
+
+-- -----------------------------------------------------
+-- Table `crm`.`leads`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `crm`.`leads` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `lead_name` VARCHAR(45) NOT NULL,
+  `lead_phone` VARCHAR(10) NOT NULL,
+  `product_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_leads_products` (`product_id` ASC),
+  CONSTRAINT `fk_leads_products`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `crm`.`products` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = hebrew;
+
+
+-- -----------------------------------------------------
+-- Table `crm`.`prospects`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `crm`.`prospects` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `prospect_name` VARCHAR(45) NOT NULL,
+  `prospect_phone` VARCHAR(10) NOT NULL,
+  `lead_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_prospects_leads` (`lead_id` ASC),
+  CONSTRAINT `fk_prospects_leads`
+    FOREIGN KEY (`lead_id`)
+    REFERENCES `crm`.`leads` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = hebrew;
+
+
+-- -----------------------------------------------------
+-- Table `crm`.`customers`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `crm`.`customers` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `customer_name` VARCHAR(45) NOT NULL,
+  `customer_phone` VARCHAR(10) NOT NULL,
+  `customer_profession` INT(11) NOT NULL,
+  `prospect_id` INT(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_customers_prospects` (`prospect_id` ASC),
+  INDEX `fk_customers_professions` (`customer_profession` ASC),
+  CONSTRAINT `fk_customers_professions`
+    FOREIGN KEY (`customer_profession`)
+    REFERENCES `crm`.`professions` (`id`),
+  CONSTRAINT `fk_customers_prospects`
+    FOREIGN KEY (`prospect_id`)
+    REFERENCES `crm`.`prospects` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = hebrew;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
