@@ -36,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`products` (
   `product_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -53,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`leads` (
     FOREIGN KEY (`product_id`)
     REFERENCES `crm`.`products` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -70,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`prospects` (
     FOREIGN KEY (`lead_id`)
     REFERENCES `crm`.`leads` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -94,6 +97,56 @@ CREATE TABLE IF NOT EXISTS `crm`.`customers` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = hebrew;
 
+USE `crm` ;
+
+-- -----------------------------------------------------
+-- procedure get_Leads
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `crm`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_Leads`()
+BEGIN
+
+	SELECT   leads.id as lead_id,
+			 leads.lead_name,
+			 leads.lead_phone,
+			 leads.product_id,
+             products.product_name
+	FROM leads
+	inner join products
+	on leads.product_id = products.id
+    order by  lead_name, product_id;
+    
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure get_Prospects
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `crm`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_Prospects`()
+BEGIN
+
+	SELECT   prospects.id as prospect_id,
+			 prospects.prospect_name,
+			 prospects.prospect_phone,
+             prospects.lead_id,
+			 leads.product_id,
+             products.product_name
+	FROM prospects
+    inner join leads
+    on leads.id = prospects.lead_id
+	inner join products
+	on leads.product_id = products.id
+    order by  lead_name, product_id;
+    
+END$$
+
+DELIMITER ;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
