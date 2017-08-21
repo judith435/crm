@@ -1,6 +1,6 @@
 var app = {
     debugMode: true,   
-    crmApi: 'http://localhost/joint/crm/crmAPI.php',
+    crmApi: 'http://localhost:8080/joint/crm/crmAPI.php',
 }
 
 jQuery(document).ready(function($) {
@@ -11,8 +11,31 @@ jQuery(document).ready(function($) {
         case "Show Prospects":
             Show_Prospects();
             break;
+        case "Create Lead":
+            Get_Products();
+            break;
     }
 });
+
+function Get_Products(){
+    $.ajax({    
+        type: 'POST',
+        url: app.crmApi,
+        data: {action: 'getProducts'},
+    })
+    .done(function(data) {
+        if (app.debugMode) {
+            console.log("crmApi response");
+            console.log(data);
+        }
+        data = JSON.parse(data);
+        // step 1
+        for(let i=0; i < data.length; i++) {
+            $("#ProductDDL").append(new Option(data[i].name, data[i].id + ',' + data[i].name));
+
+        }
+    });
+}
 
 function Show_Leads(){
     $.ajax({    
@@ -25,9 +48,19 @@ function Show_Leads(){
             console.log("crmApi response");
             console.log(data);
         }
-        //data = JSON.parse(data);
-        var stringi = JSON.stringify(data);
-        $("#content").text(stringi);
+
+        data = JSON.parse(data);
+        var leadsArray = [];
+        for (let i = 0; i < data.length; i++) {
+            leadsArray.push(new Lead(data[i].id, 
+                                     data[i].lead_name,
+                                     data[i].lead_phone,
+                                     data[i].product_id,
+                                     data[i].product_name,
+                                    ));
+        }      
+
+        $("#content").text(JSON.stringify(leadsArray));
         // for(let i=0; i < data.length; i++) {
         //     var ttt = i;
         //       $("#leads").append(data[i]);
@@ -58,33 +91,23 @@ function Show_Prospects(){
     });
 }
 
+function Lead(id, lead_name, lead_phone, product_id, product_name) {
+    this.id = id;
+    this.lead_name = lead_name;
+    this.lead_phone = lead_phone;
+    this.product_id = product_id;
+    this.product_name = product_name;
+}
 
-{/* <script>
-  $('#saveBtn').button().click(function(e) {
+
+  $('#btnAddLead').click(function(e) {
     e.preventDefault();
-    var targetUrl = 'update_gallery_grid.php?propertyid=' + propertyid + '&product=' + product + '&payment=' + payment;
     $.ajax({
-      url: targetUrl,
-      type: 'post',
-      data: {
-        json: JSON.stringify(order)
-      },
-      success: function(result) {
-        $('#result').html("<p>Order: " + order + "</p><p>Results: " + result + "</p>");
-      },
-      error: function(xhr, status, error) {
-        $('#result').append("<p>" + error + "</p>");
-      }
+        type: "POST",
+        url:  app.crmApi,
+        data: $('fieldset').serialize(),
+        success: function(){
+          alert("lead added successfully");
+        }
+      });
     });
-  });
-
-  $('#sortable').sortable({
-    placeholder: "ui-state-highlight",
-    update: function(event, ui) {
-      order = $(this).sortable('serialize');
-    }
-  });
-  $("#sortable").disableSelection();
-
-  var order = $('#sortable').sortable('serialize');
-  </script> */}

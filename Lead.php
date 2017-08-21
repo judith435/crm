@@ -73,5 +73,28 @@
             return $allLeads;
         }
 
+        public static function addLead($ld_name, $ld_phone, $prod_id, $prod_name) {
+            
+            $Lead = new Lead(0, $ld_name, $ld_phone, $prod_id, $prod_name);
+
+            // $con = new Connection('crm');
+            // $Parms =  array();
+            // array_push($Parms, new PDO_Parm("street_name", $Street -> getName(), 'string')); 
+            // array_push($Parms, new PDO_Parm("street_c_id", $Street -> getC_id(), 'integer'));
+            // $stmt = $con->executeSP('check_Street_exists', $Parms);
+
+            // if ($stmt->rowCount() > 0) {
+            //     echo "Street with same name (" . $Street->getName() . ") and same city (" . $Street -> getC_name() . ") found! Cannot be added!";     
+            // }
+            // else {
+                $con = new Connection('crm');  //IN lead_name VARCHAR(45), IN lead_phone VARCHAR(10), IN product_id Int 
+                $Parms =  array();
+                array_push($Parms, new PDO_Parm("lead_name", $Lead -> getLeadName(), 'string')); 
+                array_push($Parms, new PDO_Parm("lead_phone", $Lead -> getLeadPhone(), 'string'));
+                array_push($Parms, new PDO_Parm("product_id", $Lead -> getProduct_ID(), 'integer'));
+                $stmt = $con->executeSP('insert_lead', $Parms);
+                echo 'new lead added successfully';
+            //}
+        }
     }
 

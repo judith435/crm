@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`leads` (
     FOREIGN KEY (`product_id`)
     REFERENCES `crm`.`products` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -123,6 +123,24 @@ END$$
 DELIMITER ;
 
 -- -----------------------------------------------------
+-- procedure get_Products
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `crm`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_Products`()
+BEGIN
+
+	SELECT   id,
+			 product_name
+	FROM products
+    order by  product_name;
+    
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure get_Prospects
 -- -----------------------------------------------------
 
@@ -143,6 +161,28 @@ BEGIN
 	inner join products
 	on leads.product_id = products.id
     order by  lead_name, product_id;
+    
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure insert_lead
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `crm`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_lead`(IN lead_name VARCHAR(45), IN lead_phone VARCHAR(10), IN product_id Int )
+BEGIN
+
+    INSERT INTO `crm`.`leads`
+	(`lead_name`,
+	 `lead_phone`,
+	 `product_id`)
+	VALUES
+	(lead_name,
+	 lead_phone,
+	 product_id);    
     
 END$$
 
