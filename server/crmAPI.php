@@ -61,7 +61,7 @@
         }
 
         $product = explode(",", $_POST["product"]);//
-        if($product[0] == '0')  // $_POST["product"] contains product_id, product_name; e.g. "1,חיתולים" => 1 1st element  contains product code 2nd element product name
+        if($product[0] == '0')  // $_POST["product"] contains product_id, product_name; e.g. "1,חיתולים" => 1  st element  contains product code 2nd element product name
         {
             echo 'Please select product';
             return;
