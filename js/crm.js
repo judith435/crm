@@ -1,6 +1,7 @@
 var app = {
     debugMode: true,   
-    crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+    //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+    crmApi: 'http://localhost/crm/server/crmAPI.php',
 }
 
 jQuery(document).ready(function($) {
