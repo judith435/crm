@@ -6,5 +6,9 @@
 body {  
         width: 90%; 
         margin : auto;
-}     
+}
+
+h1 {
+        margin-bottom: 30px;
+}
     

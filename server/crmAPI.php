@@ -47,27 +47,21 @@
     function AddLead(){
         
         $leadName = trim($_POST["leadName"]);
-        if($leadName == '')  //testing isset($_POST["leadName"]) meaningless -> it is always true
-        {
-            echo 'Please enter Lead Name';
-            return;
-        }
-
         $leadPhone = trim($_POST["leadPhone"]);
-        if($leadPhone == '')  //testing isset($_POST["leadName"]) meaningless -> it is always true
-        {
-            echo 'Please enter Lead Phone';
-            return;
-        }
-
         $product = explode(",", $_POST["product"]);//
-        if($product[0] == '0')  // $_POST["product"] contains product_id, product_name; e.g. "1,חיתולים" => 1  st element  contains product code 2nd element product name
-        {
-            echo 'Please select product';
-            return;
+        // if($product[0] == '0')  // $_POST["product"] contains product_id, product_name; e.g. "1,חיתולים" => 1  st element  contains product code 2nd element product name
+        // {
+        //     echo 'Please select product';
+        //     return;
+        // }
+        $errorInInput = "";
+        Lead::addLead($leadName, $leadPhone, $product[0], $product[1], $errorInInput);
+        if ($errorInInput != "") {
+            $response_array['status'] = 'error';  
+            $response_array['message'] = $errorInInput; 
+            header('Content-type: application/json');
+            echo json_encode($response_array);
         }
-
-        Lead::addLead($leadName, $leadPhone, $product[0], $product[1]);
     }
         
         

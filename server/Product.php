@@ -1,6 +1,6 @@
 <?php
-    require_once 'Connection.php';
-    require_once 'PDO_Parm.php';
+    require_once 'Dal/Connection.php';
+    require_once 'Dal/PDO_Parm.php';
 
     class Product { 
 

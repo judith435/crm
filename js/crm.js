@@ -1,7 +1,7 @@
 var app = {
     debugMode: true,   
-    //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
-    crmApi: 'http://localhost/crm/server/crmAPI.php',
+    crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+    //crmApi: 'http://localhost/crm/server/crmAPI.php',
 }
 
 jQuery(document).ready(function($) {
@@ -111,8 +111,17 @@ function Lead(id, lead_name, lead_phone, product_id, product_name) {
         type: "POST",
         url:  app.crmApi,
         data: $('fieldset').serialize(),
-        success: function(){
-          alert("lead added successfully");
+        success: function(data){
+          if (data.status == "error"){
+            alert(data.message);
         }
+          else{
+            alert("lead added successfully");
+          }
+
+        },
+        // error:function(data){
+        //     alert(data); //===Show Error Message====
+        // }
       });
     });

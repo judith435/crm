@@ -2,23 +2,25 @@
 <html>
 <head>
     <title>Create Lead</title>
-        <script
-            src="http://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous">
-        </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" 
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" 
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script
+        src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="../css/crm.css"/> 
 </head>
 <body>  
-    <form method="post" action="../server/crmApi.php">
-        <fieldset>
-            <legend>Create Lead</legend>
-            <label>Name: <input type="text" name="leadName" maxlength="45"></label>
-            <label>Phone: <input type="text" name="leadPhone" maxlength="10"></label>
-            <label>Product: <select id="ProductDDL"  name="product"></select></label>
-            <br><br>
-            <button name="action" value="AddLead">Add Lead</button>
-        </fieldset>    
-    </form>
+    <fieldset .form-group>
+        <legend>Create Lead</legend>
+        <label>Name: <input type="text" name="leadName" maxlength="45"></label>
+        <label>Phone: <input type="text" name="leadPhone" maxlength="10"></label>
+        <label>Product: <select id="ProductDDL"  name="product"></select></label>
+        <input  type="hidden"  name="action" value="AddLead" >
+        <br><br>
+        <button class="btnAdd"  name="action" value="AddLead">Add Lead</button>
+    </fieldset>    
     <script src='../js/crm.js'></script> 
 </body>
 </html>

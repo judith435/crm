@@ -2,19 +2,33 @@
 <html>
 <head>
     <title>Show Leads</title>
-    <link rel="stylesheet" href="../css/crm.css"/> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" 
+        integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" 
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script
-        src="http://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous">
+        src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="../css/crm.css"/> 
 </head>
 <body>  
     <section class='container'>
-        <h2>leads</h2>
-            <div class='row leads'>
-        </div>
+        <h1>Leads</h1>
+        <table class="table table-hover table-responsive table-bordered">
+            <thead  class="thead-inverse">
+                <tr>
+                    <th>Lead ID</th>
+                    <th>Lead Name</th>
+                    <th>Lead Phone</th>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                </tr>
+            </thead>
+            <tbody class='leads'></tbody>
+        </table>
     </section>
-     <script src='../js/crm.js'></script> 
+    <script src='../js/crm.js'></script> 
 </body>
 </html>
+
+
