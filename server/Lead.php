@@ -76,9 +76,10 @@ require_once 'Bll/BusinessLogicLayer.php';
             $sp = $con->executeSP("get_Leads", $emptyParms);
 
             $allLeads = array();
+            $errors = "";
             while ($row = $sp->fetch())
             {                           
-               array_push($allLeads, new Lead($row['lead_id'], $row['lead_name'], $row['lead_phone'], $row['product_id'], $row['product_name']));
+               array_push($allLeads, new Lead($row['lead_id'], $row['lead_name'], $row['lead_phone'], $row['product_id'], $row['product_name'], $errors));
             }
             return $allLeads;
         }
