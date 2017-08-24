@@ -15,14 +15,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema crm
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `crm` DEFAULT CHARACTER SET hebrew ;
--- -----------------------------------------------------
--- Schema crm_alt
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema crm_alt
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `crm_alt` DEFAULT CHARACTER SET hebrew ;
 USE `crm` ;
 
 -- -----------------------------------------------------
@@ -62,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`leads` (
     FOREIGN KEY (`product_id`)
     REFERENCES `crm`.`products` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -105,84 +97,6 @@ CREATE TABLE IF NOT EXISTS `crm`.`customers` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = hebrew;
 
-USE `crm_alt` ;
-
--- -----------------------------------------------------
--- Table `crm_alt`.`professions`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `crm_alt`.`professions` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = hebrew;
-
-
--- -----------------------------------------------------
--- Table `crm_alt`.`products`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `crm_alt`.`products` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `product_name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = hebrew;
-
-
--- -----------------------------------------------------
--- Table `crm_alt`.`leads`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `crm_alt`.`leads` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `lead_name` VARCHAR(45) NOT NULL,
-  `lead_phone` VARCHAR(10) NOT NULL,
-  `product_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_leads_products` (`product_id` ASC),
-  CONSTRAINT `fk_leads_products`
-    FOREIGN KEY (`product_id`)
-    REFERENCES `crm_alt`.`products` (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 4
-DEFAULT CHARACTER SET = hebrew;
-
-
--- -----------------------------------------------------
--- Table `crm_alt`.`prospects`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `crm_alt`.`prospects` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `lead_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_prospects_leads` (`lead_id` ASC),
-  CONSTRAINT `fk_prospects_leads`
-    FOREIGN KEY (`lead_id`)
-    REFERENCES `crm_alt`.`leads` (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = hebrew;
-
-
--- -----------------------------------------------------
--- Table `crm_alt`.`customers`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `crm_alt`.`customers` (
-  `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `customer_profession` INT(11) NOT NULL,
-  `prospect_id` INT(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_customers_prospects` (`prospect_id` ASC),
-  INDEX `fk_customers_professions` (`customer_profession` ASC),
-  CONSTRAINT `fk_customers_professions`
-    FOREIGN KEY (`customer_profession`)
-    REFERENCES `crm_alt`.`professions` (`id`),
-  CONSTRAINT `fk_customers_prospects`
-    FOREIGN KEY (`prospect_id`)
-    REFERENCES `crm_alt`.`prospects` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = hebrew;
-
 USE `crm` ;
 
 -- -----------------------------------------------------
@@ -220,6 +134,9 @@ BEGIN
 	SELECT   id,
 			 product_name
 	FROM products
+    union 
+    select 	0 as id , 
+			'' as product_name 
     order by  product_name;
     
 END$$

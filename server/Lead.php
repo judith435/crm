@@ -3,20 +3,19 @@
 require_once 'Validations.php';
 require_once 'Bll/BusinessLogicLayer.php';
 
-    class Lead { 
+    class Lead   implements JsonSerializable { 
 
-        //members must be public so that  JSON_encode($streets); in function GetDisplayStreets() in CitiesApi.php will work
-        public $id;
-        public $lead_name;
-        public $lead_phone;
-        public $product_id;
-        public $product_name;
+        private $id;
+        private $lead_name;
+        private $lead_phone;
+        private $product_id;
+        private $product_name;
 
         public function __construct($ld_id, $ld_name, $ld_phone, $prod_id, $prod_name, &$errorInInput){
             $this->setID($ld_id);
             $this->setLeadName($ld_name, $errorInInput);
             $this->setLeadPhone($ld_phone, $errorInInput); 
-            $this->setProduct_ID($prod_id, $errorInInput0); 
+            $this->setProduct_ID($prod_id, $errorInInput); 
             $this->setProduct_Name($prod_name); 
         }
 
@@ -98,6 +97,16 @@ require_once 'Bll/BusinessLogicLayer.php';
             BusinessLogicLayer::update('crm', 'insert_lead', $Parms);
             echo 'new lead added successfully';
 
+        }
+
+        public function jsonSerialize() {
+            return  [
+                        'id' => $this->getID(),
+                        'lead_name' => $this->getLeadName(),
+                        'lead_phone' => $this->getLeadPhone(),
+                        'product_id' => $this->getProduct_ID(),
+                        'product_name' => $this->getProduct_Name()
+                    ];
         }
 
         // public static function addLead($ld_name, $ld_phone, $prod_id, $prod_name) {

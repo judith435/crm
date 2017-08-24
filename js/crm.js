@@ -107,6 +107,8 @@ function Lead(id, lead_name, lead_phone, product_id, product_name) {
 //write same generic add functionfor all crm objects
   $('.btnAdd').click(function(e) {
     e.preventDefault();
+    var tolo = $('fieldset').serialize();
+    var tala = 4;    
     $.ajax({
         type: "POST",
         url:  app.crmApi,

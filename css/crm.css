@@ -1,10 +1,11 @@
 *{
 	margin:0px;
-	padding:0px;
+        padding:0px;
+        box-sizing: border-box;
     }
 
 body {  
-        width: 90%; 
+        width: 95%; 
         margin : auto;
 }
 
@@ -12,4 +13,19 @@ h1 {
         text-align: center;
         margin: 30px 0px;
 }
-    
+
+.form-control {
+        display: inline-block;
+        width: 70%; 
+}
+
+#merkaz {
+        width: 50%;
+        margin: 0 auto;
+      }
+
+/* .input-description {
+        width: 8%;
+      } */
+
+

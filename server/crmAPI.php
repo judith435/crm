@@ -29,6 +29,7 @@
     }
 
     function getLeads() {
+
         $leads = Lead::getLeads();
         echo json_encode($leads);
     }
