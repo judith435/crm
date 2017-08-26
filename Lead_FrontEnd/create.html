@@ -12,31 +12,33 @@
     </script>
     
     </head>
-<body> 
-    <h1>Create Lead</h1>
-    <main class="center-block">
-        <div id="merkaz"> 
-            <fieldset>
-            <div class="form-group">
-                <label class="input-description">Name:</label>
-                <input type="text"  class="form-control" name="leadName" placeholder="Enter new Lead name" maxlength="45">
+<body>
+    <form id="frmCUD"> 
+        <h1>Create Lead</h1>
+        <main class="center-block">
+            <div id="merkaz"> 
+                <div class="form-group">
+                    <label class="input-description">Name:</label>
+                    <input type="text"  class="form-control" name="leadName" placeholder="Enter new Lead name" maxlength="45">
+                </div>
+                <div class="form-group">
+                    <label  class="input-description">Phone:</label>
+                    <input type="text"  class="form-control" name="leadPhone" placeholder="Enter new Lead phone#" maxlength="10">
+                </div>
+                <div class="form-group">
+                    <label  class="input-description">Product:</label>
+                    <select id="ProductDDL"  class="form-control" name="product"  placeholder="Select Product" ></select>
+                </div>
+                <input  type="hidden"  name="action" value="AddLead" >
+                <div class="form-group">
+                    <br><br>
+                    <button class="btnAdd btn btn-primary"  name="action" value="AddLead">Add Lead</button>
+                </div>
             </div>
-            <div class="form-group">
-                <label  class="input-description">Phone:</label>
-                <input type="text"  class="form-control" name="leadPhone" placeholder="Enter new Lead phone#" maxlength="10">
-            </div>
-            <div class="form-group">
-                <label  class="input-description">Product:</label>
-                <select id="ProductDDL"  class="form-control" name="product"  placeholder="Select Product" ></select>
-            </div>
-            <input  type="hidden"  name="action" value="AddLead" >
-            <div class="form-group">
-                <br><br>
-                <button class="btnAdd btn btn-primary"  name="action" value="AddLead">Add Lead</button>
-            </div>
-            </fieldset>
-      </div>
-    </main>  
+        </main> 
+    </form>     
     <script src='../js/crm.js'></script> 
+    <script src='../js/validations.js'></script> 
+    <script src='../js/jquery.validate.js'></script> 
 </body>
 </html>

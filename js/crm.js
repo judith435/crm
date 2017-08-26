@@ -112,15 +112,23 @@
         this.product_name = product_name;
     }
 
+    // $(document).ready(function () {
+    //     $('#form1').on("submit", function (evt) {
+    //         evt.preventDefault();
+    //     });
+    // });
+    
+
     //write same generic add functionfor all crm objects
-    $('.btnAdd').click(function(e) {
+    // $('.btnAdd').click(function(e) {
+    $('#frmCUD').on("submit", function (e) {    
         e.preventDefault();
-        var tolo = $('fieldset').serialize();
+        var tolo = $('form').serialize();
         var tala = 4;    
         $.ajax({
             type: "POST",
             url:  app.crmApi,
-            data: $('fieldset').serialize(),
+            data: $('form').serialize(),
             success: function(data){
             if (data.status == "error"){
                 alert("Error from Server: " + data.message);

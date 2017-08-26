@@ -24,6 +24,9 @@ h1 {
         margin: 0 auto;
       }
 
+.error {
+color: #e74c3c;
+}
 /* .input-description {
         width: 8%;
       } */
