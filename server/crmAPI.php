@@ -55,7 +55,7 @@
         if ($errorInInput != "") {
             $response_array['status'] = 'error';  
             $response_array['message'] = $errorInInput; 
-            header('Content-type: application/json');
+            // header('Content-type: application/json');
             echo json_encode($response_array);
         }
     }

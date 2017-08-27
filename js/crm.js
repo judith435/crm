@@ -7,9 +7,9 @@
 (function() {
     var app = {
         debugMode: true,   
-        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
     jQuery(document).ready(function($) {
@@ -159,7 +159,7 @@
         // 3. Set the click event to do the validation     $('#frmCUD').on("submit", function (e) {   
         // $("#btnValidate").click(function () {
       
-        tutu();
+        // tutu();
         
         // var tolo = $('form').serialize();
         // var tala = 4;  
