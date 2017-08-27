@@ -3,7 +3,7 @@
 require_once 'Validations.php';
 require_once 'Bll/BusinessLogicLayer.php';
 
-    class Lead   implements JsonSerializable { 
+    class Lead implements JsonSerializable { 
 
         private $id;
         private $lead_name;

@@ -7,9 +7,9 @@
 (function() {
     var app = {
         debugMode: true,   
-        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
     jQuery(document).ready(function($) {
@@ -24,6 +24,8 @@
                 Get_Products();
                 break;
         }
+
+
     });
 
     function Get_Products(){
@@ -123,8 +125,45 @@
     // $('.btnAdd').click(function(e) {
     $('#frmCUD').on("submit", function (e) {    
         e.preventDefault();
-        var tolo = $('form').serialize();
-        var tala = 4;    
+
+
+        var rules = {
+            leadName: {
+              required: true,
+              minlength: 3,
+            //   letters: true
+            },
+            leadPhone: {
+              required: true,
+              minlength: 9,
+            // numbers: true
+            }
+        };
+        var messages = {
+            leadName: "Please specify your name (only letters and spaces are allowed)",
+            leadPhone: "Please specify a valid phone#"
+      };
+      
+        // 2. Initiate the validator
+        var validator = new jQueryValidatorWrapper("frmCUD", rules, messages);
+        function tutu(){
+          if (!validator.validate()){
+            alert("Validation Unsuccessfull!!!!!");
+            return;
+            }
+            else{
+                  alert("Validation Success!");
+            }
+        };
+      
+        // 3. Set the click event to do the validation     $('#frmCUD').on("submit", function (e) {   
+        // $("#btnValidate").click(function () {
+      
+        tutu();
+        
+        // var tolo = $('form').serialize();
+        // var tala = 4;  
+         var talu = 3;  
         $.ajax({
             type: "POST",
             url:  app.crmApi,
