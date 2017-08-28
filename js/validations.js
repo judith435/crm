@@ -1,35 +1,121 @@
 $(document).ready(function () {
-  // 1. prepare the validation rules and messages.
-  var rules = {
+  var kobe = (function() {
+    var validationOK =  "false";
+    
+  validator = $("#frmCUD").validate({
+    rules:  {
       leadName: {
         required: true,
-        minlength: 3,
-        letters: true
+        minlength: 3 
+        // letters: true
       },
       leadPhone: {
         required: true,
-        minlength: 9,
+        minlength: 9 
       // numbers: true
       }
-  };
-  var messages = {
-      leadName: "Please specify your name (only letters and spaces are allowed)",
-      leadPhone: "Please specify a valid phone#"
-};
+    } ,
+    messages: {
+        leadName: "Please specify your name (only letters and spaces are allowed)",
+        leadPhone: "Please specify a valid phone#"
+    },
+    submitHandler: function() {
+      validationOK = "true";
+      alert("success!");
+    },
+    getReturnCode: function() {
+      return   validationOK;
+  }
+  // set this class to error-labels to indicate valid fields
+   // success: function(label) {
+      // set &nbsp; as text for IE
+      //alert("success!");
+      
+      // label.html("&nbsp;").addClass("checked");
+    //} 
 
-  // 2. Initiate the validator
-  var validator = new jQueryValidatorWrapper("frmCUD", rules, messages);
-  function kuku(){
-    if (!validator.validate())
-        return;
   
-    alert("Validation Success!");
-  };
+  
+  });
 
   // 3. Set the click event to do the validation     $('#frmCUD').on("submit", function (e) {   
   // $("#btnValidate").click(function () {
 });
+});
 
+// var validator = $("#signupform").validate({
+//   rules: {
+//     firstname: "required",
+//     lastname: "required",
+//     username: {
+//       required: true,
+//       minlength: 2,
+//       remote: "users.action"
+//     },
+//     password: {
+//       required: true,
+//       minlength: 5
+//     },
+//     password_confirm: {
+//       required: true,
+//       minlength: 5,
+//       equalTo: "#password"
+//     },
+//     email: {
+//       required: true,
+//       email: true,
+//       remote: "emails.action"
+//     },
+//     dateformat: "required",
+//     terms: "required"
+//   },
+//   messages: {
+//     firstname: "Enter your firstname",
+//     lastname: "Enter your lastname",
+//     username: {
+//       required: "Enter a username",
+//       minlength: jQuery.validator.format("Enter at least {0} characters"),
+//       remote: jQuery.validator.format("{0} is already in use")
+//     },
+//     password: {
+//       required: "Provide a password",
+//       minlength: jQuery.validator.format("Enter at least {0} characters")
+//     },
+//     password_confirm: {
+//       required: "Repeat your password",
+//       minlength: jQuery.validator.format("Enter at least {0} characters"),
+//       equalTo: "Enter the same password as above"
+//     },
+//     email: {
+//       required: "Please enter a valid email address",
+//       minlength: "Please enter a valid email address",
+//       remote: jQuery.validator.format("{0} is already in use")
+//     },
+//     dateformat: "Choose your preferred dateformat",
+//     terms: " "
+//   },
+//   // the errorPlacement has to take the table layout into account
+//   errorPlacement: function(error, element) {
+//     if (element.is(":radio"))
+//       error.appendTo(element.parent().next().next());
+//     else if (element.is(":checkbox"))
+//       error.appendTo(element.next());
+//     else
+//       error.appendTo(element.parent().next());
+//   },
+//   // specifying a submitHandler prevents the default submit, good for the demo
+//   submitHandler: function() {
+//     alert("submitted!");
+//   },
+//   // set this class to error-labels to indicate valid fields
+//   success: function(label) {
+//     // set &nbsp; as text for IE
+//     label.html("&nbsp;").addClass("checked");
+//   },
+//   highlight: function(element, errorClass) {
+//     $(element).parent().next().find("." + errorClass).removeClass("checked");
+//   }
+// });
 
 
 (function() {

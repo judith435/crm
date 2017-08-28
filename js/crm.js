@@ -7,9 +7,9 @@
 (function() {
     var app = {
         debugMode: true,   
-        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
     jQuery(document).ready(function($) {
@@ -123,44 +123,16 @@
 
     //write same generic add functionfor all crm objects
     // $('.btnAdd').click(function(e) {
-    $('#frmCUD').on("submit", function (e) {    
+    $('#frmCUD').on("submit", function (e) {   
+        var tete = validatorX.getReturnCode(); 
+        var ooo = 8;
+        var tatl = ValidationOK;
+        var roro = 4;
         e.preventDefault();
-
-
-        var rules = {
-            leadName: {
-              required: true,
-              minlength: 3,
-            //   letters: true
-            },
-            leadPhone: {
-              required: true,
-              minlength: 9,
-            // numbers: true
-            }
-        };
-        var messages = {
-            leadName: "Please specify your name (only letters and spaces are allowed)",
-            leadPhone: "Please specify a valid phone#"
-      };
-      
-        // 2. Initiate the validator
-        var validator = new jQueryValidatorWrapper("frmCUD", rules, messages);
-        function tutu(){
-          if (!validator.validate()){
-            alert("Validation Unsuccessfull!!!!!");
+        if (ValidationOK == "false") {
+            alert ("errors in js validations");
             return;
-            }
-            else{
-                  alert("Validation Success!");
-            }
-        };
-      
-        // 3. Set the click event to do the validation     $('#frmCUD').on("submit", function (e) {   
-        // $("#btnValidate").click(function () {
-      
-        // tutu();
-        
+        }
         // var tolo = $('form').serialize();
         // var tala = 4;  
          var talu = 3;  
@@ -169,17 +141,21 @@
             url:  app.crmApi,
             data: $('form').serialize(),
             success: function(data){
-            if (data.status == "error"){
-                alert("Error from Server: " + data.message);
-            }
-            else{
-                alert("lead added successfully");
-            }
+                data = JSON.parse(data);
+                // application errors => e.g. missing product 
+                if (data.status == "error"){ 
+                    alert("Error from Server: " + data.message);
+                }
+                else{
+                    alert("lead added successfully");
+                }
 
-            },
-            // error:function(data){
-            //     alert(data); //===Show Error Message====
-            // }
+                },
+            // systen errors caused by a bad connection, timeout, invalid url  
+            error:function(data){
+                alert(data); //===Show Error Message====
+                }
         });
     });
 })();
+
