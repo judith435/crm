@@ -4,13 +4,14 @@
 //     // Expose to global
 //     window['varName'] = varName;
 // })();
-(function() {
+var crmGeneral = (function() {
     var app = {
         debugMode: true,   
-        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
+
 
     jQuery(document).ready(function($) {
         switch ($('title').text()) {
@@ -24,8 +25,6 @@
                 Get_Products();
                 break;
         }
-
-
     });
 
     function Get_Products(){
@@ -114,45 +113,38 @@
         this.product_name = product_name;
     }
 
-    // $(document).ready(function () {
-    //     $('#form1').on("submit", function (evt) {
-    //         evt.preventDefault();
-    //     });
-    // });
-    
-
     //write same generic add functionfor all crm objects
-    // $('.btnAdd').click(function(e) {
     $('#frmCUD').on("submit", function (e) {   
-        var roro = 4;
         e.preventDefault();
-        // if (ValidationOK == "false") {
-        //     alert ("errors in js validations");
-        //     return;
-        // }
-        // var tolo = $('form').serialize();
-        // var tala = 4;  
-         var talu = 3;  
+    });
+
+    function ajaxSubmit(){
         $.ajax({
             type: "POST",
             url:  app.crmApi,
             data: $('form').serialize(),
             success: function(data){
                 data = JSON.parse(data);
+                var dod = 3;
                 // application errors => e.g. missing product 
-                if (data.status == "error"){ 
-                    alert("Error from Server: " + data.message);
-                }
-                else{
-                    alert("lead added successfully");
-                }
-
+                    if (data.status == "error"){ 
+                        alert("Error from Server: " + data.message);
+                    }
+                    else{
+                        alert("lead added successfully");
+                    }
                 },
             // systen errors caused by a bad connection, timeout, invalid url  
             error:function(data){
                 alert(data); //===Show Error Message====
                 }
         });
-    });
+
+    }
+
+    //ajaxSubmit is called from submitHandler:  in validator = $("#frmCUD").validate({ from validations.js file
+    return {
+        ajaxSubmit: ajaxSubmit 
+    }
 })();
 

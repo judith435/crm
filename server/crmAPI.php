@@ -54,8 +54,12 @@
             $response_array['status'] = 'error';  
             $response_array['message'] = $errorInInput; 
             // header('Content-type: application/json');
-            echo json_encode($response_array);
         }
+        else {
+            $response_array['status'] = 'ok';  
+            $response_array['message'] = 'lead added successfully'; 
+        }
+        echo json_encode($response_array);
     }
         
         

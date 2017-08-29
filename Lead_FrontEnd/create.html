@@ -4,31 +4,53 @@
     <title>Create Lead</title>
     <link rel="stylesheet"    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"      crossorigin="anonymous">
-    <!-- site css file placed after bootstrap files to enable overriding of bootstrap styles --> 
-    <link rel="stylesheet" href="../css/crm.css"/> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
     </script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <!-- site css file placed after bootstrap files to enable overriding of bootstrap styles --> 
+    <link rel="stylesheet" href="../css/crm.css"/> 
 </head>
 <body>
     <form id="frmCUD"> 
         <h1>Create Lead</h1>
         <main class="center-block">
-            <div id="merkaz"> 
-                <div class="form-group">
+            <div id="merkaz">
+                <table id="tblCUD" class="table table-responsive">
+                    <tbody>
+                        <tr>
+                            <td class="title">Lead Name</td>
+                            <td class="content"><input type="text"  class="form-control" name="leadName" placeholder="Enter new Lead name" maxlength="45"></td>
+                            <td class="zerror-td"><label class="error"></label></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Lead Phone</td>
+                            <td class="content"><input type="text"  class="form-control" name="leadPhone" placeholder="Enter new Lead phone#" maxlength="10"></td>
+                            <td class="zerror-td"><label class="error"></label></td>
+                        </tr>
+                        <tr>
+                            <td class="title">Lead Product</td>
+                            <td class="content"><select id="ProductDDL"  class="form-control" name="product"  placeholder="Select Product" ></select></td>
+                            <td class="zerror-td"><label class="error"></label></td>
+                        </tr>
+                    </tbody>
+                </table>
+                     
+                <!-- <div class="form-group">
                     <label class="input-description">Name:</label>
                     <input type="text"  class="form-control" name="leadName" placeholder="Enter new Lead name" maxlength="45">
+                    <label class="error"></label>
                 </div>
                 <div class="form-group">
                     <label  class="input-description">Phone:</label>
                     <input type="text"  class="form-control" name="leadPhone" placeholder="Enter new Lead phone#" maxlength="10">
+                    <label class="error"></label>
                 </div>
                 <div class="form-group">
                     <label  class="input-description">Product:</label>
                     <select id="ProductDDL"  class="form-control" name="product"  placeholder="Select Product" ></select>
-                </div>
+                </div> -->
                 <input  type="hidden"  name="action" value="AddLead" >
                 <div class="form-group">
                     <br><br>
@@ -37,8 +59,7 @@
             </div>
         </main> 
     </form> 
+    <script src='../js/crmGeneral.js'></script> 
     <script src='../js/validations.js'></script> 
-    <script src='../js/crm.js'></script> 
-    
 </body>
 </html>
