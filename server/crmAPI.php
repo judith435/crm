@@ -29,7 +29,6 @@
     }
 
     function getLeads() {
-
         $leads = Lead::getLeads();
         echo json_encode($leads);
     }
@@ -46,7 +45,6 @@
     }
 
     function AddLead(){
-        
         $leadName = trim($_POST["leadName"]);
         $leadPhone = trim($_POST["leadPhone"]);
         $product = explode(",", $_POST["product"]);//

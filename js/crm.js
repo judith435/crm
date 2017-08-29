@@ -7,9 +7,9 @@
 (function() {
     var app = {
         debugMode: true,   
-        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
     jQuery(document).ready(function($) {
@@ -41,7 +41,7 @@
             }
             data = JSON.parse(data);
             for(let i=0; i < data.length; i++) {
-            $("#ProductDDL").append(new Option(data[i].name, data[i].id + ',' + data[i].name));
+                $("#ProductDDL").append(new Option(data[i].name, data[i].id + ',' + data[i].name));
             }
         });
     }
@@ -124,15 +124,12 @@
     //write same generic add functionfor all crm objects
     // $('.btnAdd').click(function(e) {
     $('#frmCUD').on("submit", function (e) {   
-        var tete = validatorX.getReturnCode(); 
-        var ooo = 8;
-        var tatl = ValidationOK;
         var roro = 4;
         e.preventDefault();
-        if (ValidationOK == "false") {
-            alert ("errors in js validations");
-            return;
-        }
+        // if (ValidationOK == "false") {
+        //     alert ("errors in js validations");
+        //     return;
+        // }
         // var tolo = $('form').serialize();
         // var tala = 4;  
          var talu = 3;  

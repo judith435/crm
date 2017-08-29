@@ -1,8 +1,14 @@
 $(document).ready(function () {
-  var kobe = (function() {
-    var validationOK =  "false";
-    
   validator = $("#frmCUD").validate({
+    invalidHandler: function(e, validator) {
+			var errors = validator.numberOfInvalids();
+			if (errors) {
+		  	alert("not ok");
+      } 
+      else {
+		  	alert("all ok");
+			}
+		},
     rules:  {
       leadName: {
         required: true,
@@ -19,10 +25,6 @@ $(document).ready(function () {
         leadName: "Please specify your name (only letters and spaces are allowed)",
         leadPhone: "Please specify a valid phone#"
     },
-    submitHandler: function() {
-      validationOK = "true";
-      alert("success!");
-    },
     getReturnCode: function() {
       return   validationOK;
   }
@@ -30,17 +32,9 @@ $(document).ready(function () {
    // success: function(label) {
       // set &nbsp; as text for IE
       //alert("success!");
-      
       // label.html("&nbsp;").addClass("checked");
     //} 
-
-  
-  
   });
-
-  // 3. Set the click event to do the validation     $('#frmCUD').on("submit", function (e) {   
-  // $("#btnValidate").click(function () {
-});
 });
 
 // var validator = $("#signupform").validate({
