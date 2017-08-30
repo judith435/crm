@@ -72,11 +72,12 @@
         public static function getProspects() {
         //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
             $emptyParms = []; 
-            $con = new Connection('crm');
-            $sp = $con->executeSP("get_Prospects", $emptyParms);
-
             $allProspects = array();
-            while ($row = $sp->fetch())
+            
+            $resultSet = BusinessLogicLayer::get('crm', 'get_Prospects', $emptyParms);
+            
+            while ($row = $resultSet->fetch())
+
             {                           
                array_push($allProspects, new Prospect($row['prospect_id'], 
                                                       $row['prospect_name'], 

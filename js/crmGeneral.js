@@ -7,9 +7,9 @@
 var crmGeneral = (function() {
     var app = {
         debugMode: true,   
-        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
 
@@ -58,6 +58,11 @@ var crmGeneral = (function() {
                     }
 
                     data = JSON.parse(data);
+                    if (data.status == "error"){ 
+                        alert(data.message);
+                        return;
+                    }
+    
                     var leadsArray = [];
                     for (let i = 0; i < data.length; i++) {
                         leadsArray.push(new Lead(data[i].id, 
@@ -125,15 +130,14 @@ var crmGeneral = (function() {
             data: $('form').serialize(),
             success: function(data){
                 data = JSON.parse(data);
-                var dod = 3;
                 // application errors => e.g. missing product 
-                    if (data.status == "error"){ 
-                        alert("Error from Server: " + data.message);
-                    }
-                    else{
-                        alert("lead added successfully");
-                    }
-                },
+                if (data.status == "error"){ 
+                    alert("Error from Server: " + data.message);
+                }
+                else{
+                    alert("lead added successfully");
+                }
+            },
             // systen errors caused by a bad connection, timeout, invalid url  
             error:function(data){
                 alert(data); //===Show Error Message====

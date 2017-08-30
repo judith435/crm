@@ -29,8 +29,19 @@
     }
 
     function getLeads() {
-        $leads = Lead::getLeads();
-        echo json_encode($leads);
+        try {
+            $leads = Lead::getLeads();
+            echo json_encode($leads);
+        }
+        catch (Exception $error) {
+            ErrorHandling::LogError($error); 
+            $response_array = array(
+                "status" => "error",
+                "message" => "server error please contact support center",
+            );
+            $ttt = json_encode($response_array);
+            echo "I do no know 2222";//$response_array;
+        }
     }
 
     function getProspects() {
@@ -39,9 +50,14 @@
     }
 
     function getProducts() {
-        $products = Product::getProducts();
-        $dodo = json_encode($products);
-        echo json_encode($products);
+        try {
+            $products = Product::getProducts();
+            echo json_encode($products);
+        }
+        catch (Exception $error) {
+            ErrorHandling::LogError($error); 
+        }
+
     }
 
     function AddLead(){

@@ -30,17 +30,23 @@
         }
 
         public static function getProducts() {
-        //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
-            $emptyParms = []; 
-            $con = new Connection('crm');
-            $sp = $con->executeSP("get_Products", $emptyParms);
-
-            $allProducts = array();
-            while ($row = $sp->fetch())
-            {                           
-               array_push($allProducts, new Product($row['id'], $row['product_name']));
+            try {
+                //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
+                $emptyParms = []; 
+                $allProducts = array();
+                
+                $resultSet = BusinessLogicLayer::get('crm', 'get_Products', $emptyParms);
+                
+                while ($row = $resultSet->fetch())
+                {                           
+                  array_push($allProducts, new Product($row['id'], $row['product_name']));
+                }
+                return $allProducts;
             }
-            return $allProducts;
+                catch (Exception $error) {
+                    throw $error;
+                }
+
         }
 
     }

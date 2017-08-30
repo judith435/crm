@@ -1,6 +1,6 @@
 <?php
 
-require_once 'Validations.php';
+require_once 'Share/Validations.php';
 require_once 'Bll/BusinessLogicLayer.php';
 
     class Lead implements JsonSerializable { 
@@ -69,34 +69,41 @@ require_once 'Bll/BusinessLogicLayer.php';
         }
 
         public static function getLeads() {
-        //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
-            $emptyParms = []; 
-            $con = new Connection('crm');
-            $sp = $con->executeSP("get_Leads", $emptyParms);
+            try {
+                //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
+                $emptyParms = []; 
+                $allLeads = array();
+                $errors = "";
 
-            $allLeads = array();
-            $errors = "";
-            while ($row = $sp->fetch())
-            {                           
-               array_push($allLeads, new Lead($row['lead_id'], $row['lead_name'], $row['lead_phone'], $row['product_id'], $row['product_name'], $errors));
+                $resultSet = BusinessLogicLayer::get('crm', 'get_LeadsX', $emptyParms);
+
+                while ($row = $resultSet->fetch())
+                {                           
+                array_push($allLeads, new Lead($row['lead_id'], $row['lead_name'], $row['lead_phone'], $row['product_id'], $row['product_name'], $errors));
+                }
+                return $allLeads;
             }
-            return $allLeads;
+            catch (Exception $error) {
+                throw new Exception($error);
+            }
         }
 
         public static function addLead($ld_name, $ld_phone, $prod_id, $prod_name, &$errorInInput) {
-            
-            $Lead = new Lead(0, $ld_name, $ld_phone, $prod_id, $prod_name, $errorInInput);
-            if ($errorInInput != "") {
-                return;
+            try {
+                    $Lead = new Lead(0, $ld_name, $ld_phone, $prod_id, $prod_name, $errorInInput);
+                    if ($errorInInput != "") {
+                        return;
+                    }
+                    $Parms =  array();
+                    array_push($Parms, new PDO_Parm("lead_name", $Lead -> getLeadName(), 'string')); 
+                    array_push($Parms, new PDO_Parm("lead_phone", $Lead -> getLeadPhone(), 'string'));
+                    array_push($Parms, new PDO_Parm("product_id", $Lead -> getProduct_ID(), 'integer'));
+                    BusinessLogicLayer::update('crm', 'insert_lead', $Parms);
+                    echo 'new lead added successfully';
             }
-
-            $Parms =  array();
-            array_push($Parms, new PDO_Parm("lead_name", $Lead -> getLeadName(), 'string')); 
-            array_push($Parms, new PDO_Parm("lead_phone", $Lead -> getLeadPhone(), 'string'));
-            array_push($Parms, new PDO_Parm("product_id", $Lead -> getProduct_ID(), 'integer'));
-            BusinessLogicLayer::update('crm', 'insert_lead', $Parms);
-            echo 'new lead added successfully';
-
+            catch (Exception $error) {
+                throw new Exception($error);
+            }
         }
 
         public function jsonSerialize() {
@@ -108,30 +115,5 @@ require_once 'Bll/BusinessLogicLayer.php';
                         'product_name' => $this->getProduct_Name()
                     ];
         }
-
-        // public static function addLead($ld_name, $ld_phone, $prod_id, $prod_name) {
-            
-        //     $Lead = new Lead(0, $ld_name, $ld_phone, $prod_id, $prod_name);
-
-        //     // $con = new Connection('crm');
-        //     // $Parms =  array();
-        //     // array_push($Parms, new PDO_Parm("street_name", $Street -> getName(), 'string')); 
-        //     // array_push($Parms, new PDO_Parm("street_c_id", $Street -> getC_id(), 'integer'));
-        //     // $stmt = $con->executeSP('check_Street_exists', $Parms);
-
-        //     // if ($stmt->rowCount() > 0) {
-        //     //     echo "Street with same name (" . $Street->getName() . ") and same city (" . $Street -> getC_name() . ") found! Cannot be added!";     
-        //     // }
-        //     // else {
-        //         $con = new Connection('crm');  //IN lead_name VARCHAR(45), IN lead_phone VARCHAR(10), IN product_id Int 
-        //         $Parms =  array();
-        //         array_push($Parms, new PDO_Parm("lead_name", $Lead -> getLeadName(), 'string')); 
-        //         array_push($Parms, new PDO_Parm("lead_phone", $Lead -> getLeadPhone(), 'string'));
-        //         array_push($Parms, new PDO_Parm("product_id", $Lead -> getProduct_ID(), 'integer'));
-        //         $stmt = $con->executeSP('insert_lead', $Parms);
-        //         echo 'new lead added successfully';
-        //     //}
-        // }
-
     }
 

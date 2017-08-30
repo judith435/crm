@@ -1,0 +1,300 @@
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:31:47
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:34:27
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:35:58
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:37:49
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:44:16
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:45:33
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:46:22
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:47:07
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:47:33
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:52:36
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 15:53:08
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0
+******************************************************************************************************************************
+Error occured at 2017-08-30 16:22:57
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 33 => function: getLeads => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 16 => function: getLeads => class:  => type: 
+Message: Exception: Exception: PDOException: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.get_LeadsX does not exist in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:60
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Dal\Connection.php(60): PDOStatement->execute()
+#1 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#4 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#5 {main} in C:\xampp\htdocs\joint\crm\server\Dal\Connection.php:64
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php(63): Connection->executeSP('get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#3 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#4 {main} in C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php:66
+Stack trace:
+#0 C:\xampp\htdocs\joint\crm\server\Lead.php(78): BusinessLogicLayer::get('crm', 'get_LeadsX', Array)
+#1 C:\xampp\htdocs\joint\crm\server\crmAPI.php(33): Lead::getLeads()
+#2 C:\xampp\htdocs\joint\crm\server\crmAPI.php(16): getLeads()
+#3 {main}
+Code: 0

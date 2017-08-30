@@ -25,16 +25,16 @@ h1 {
 }
 
 #tblCUD td.title {
-        /* width: 12%; */
+        width: 12%;
         margin-bottom: 5px;
         font-weight: 700;
 }
 #tblCUD td.content {
-        /* width: 45%; */
+        width: 45%;
         margin-bottom: 5px;
 }
 #tblCUD td.error-td {
-        /* width: 43%; */
+        width: 43%;
         margin-bottom: 5px;
 }
 
