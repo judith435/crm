@@ -17,8 +17,6 @@ $(document).ready(function () {
         leadPhone: "Please specify a valid phone#"
     },
     submitHandler: function() {
-        var wowo = 4;
-        wowo = 5;
         crmGeneral.ajaxSubmit();
       }
   });
