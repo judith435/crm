@@ -70,21 +70,28 @@ require_once 'Bll/BusinessLogicLayer.php';
 
         public static function getLeads() {
             try {
+                // $sp = $con->executeSP("get_Leads", $emptyParms);
+                // $allLeads = array();
+                // $errors = "";
+                // while ($row = $sp->fetch())
+                //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
+
                 //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
                 $emptyParms = []; 
                 $allLeads = array();
                 $errors = "";
-
-                $resultSet = BusinessLogicLayer::get('crm', 'get_LeadsX', $emptyParms);
-
+                $con = new Connection('crm'); //@@@@@@@@@@@@@@@@@@@@@@@
+                //$resultSet = BusinessLogicLayer::get('crm', 'get_Leads', $emptyParms);
+                $resultSet = $con->executeSP("get_LeadsX", $emptyParms);  //@@@@@@@@@@@@@@@@@@@@@@@  
+                 
                 while ($row = $resultSet->fetch())
                 {                           
-                array_push($allLeads, new Lead($row['lead_id'], $row['lead_name'], $row['lead_phone'], $row['product_id'], $row['product_name'], $errors));
+                  array_push($allLeads, new Lead($row['lead_id'], $row['lead_name'], $row['lead_phone'], $row['product_id'], $row['product_name'], $errors));
                 }
                 return $allLeads;
             }
             catch (Exception $error) {
-                throw new Exception($error);
+                //throw $error;//new Exception($error);
             }
         }
 
@@ -102,7 +109,7 @@ require_once 'Bll/BusinessLogicLayer.php';
                     echo 'new lead added successfully';
             }
             catch (Exception $error) {
-                throw new Exception($error);
+                //throw $error;//new Exception($error);
             }
         }
 

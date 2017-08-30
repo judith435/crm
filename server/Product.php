@@ -2,11 +2,11 @@
     require_once 'Dal/Connection.php';
     require_once 'Dal/PDO_Parm.php';
 
-    class Product { 
+    class Product  implements JsonSerializable { 
 
         //members must be public so that  JSON_encode($streets); in function GetDisplayStreets() in CitiesApi.php will work
-        public $id;
-        public $name;
+        private $id;
+        private $name;
       
         public function __construct($prod_id, $prod_name){
             $this->setID($prod_id);
@@ -31,7 +31,6 @@
 
         public static function getProducts() {
             try {
-                //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
                 $emptyParms = []; 
                 $allProducts = array();
                 
@@ -44,10 +43,18 @@
                 return $allProducts;
             }
                 catch (Exception $error) {
-                    throw $error;
+                   // throw $error;
                 }
 
         }
+
+        public function jsonSerialize() {
+            return  [
+                        'id' => $this->getID(),
+                        'name' => $this->getName() 
+                    ];
+        }
+
 
     }
 

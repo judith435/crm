@@ -53,7 +53,7 @@
                 $con->executeSP($spName, $SP_parms);
             }
             catch (Exception $error) {
-                throw $error;
+             //   throw $error;
             }
         }
 
@@ -63,9 +63,8 @@
                 return $con->executeSP($spName, $SP_parms);
             }
             catch (Exception $error) {
-                throw new Exception($error);
+               // throw $error;//new Exception($error);
             }
-
         }
     }
 ?>

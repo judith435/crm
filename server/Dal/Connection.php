@@ -38,7 +38,7 @@
                 return $stmt;
             }
             catch (Exception $error) {
-                throw new Exception($error);
+               // throw $error;//new Exception($error);
             }
         }
 
@@ -47,21 +47,21 @@
                 $pdo = new PDO($this->dsn, $this->user, $this->pass, $this->opt);
                 $parmList = '(';
                 foreach ($parms as  $parm) {  
-                $parmList .= ':' . $parm->getID() . ',';
+                    $parmList .= ':' . $parm->getID() . ',';
                 }
                 $parmList = rtrim($parmList, ',');
                 $parmList .= ')';
                 $sql = 'CALL ' . $sp . $parmList;
                 $stmt = $pdo->prepare($sql);
                 foreach ($parms as  $parm) { 
-                $stmt->bindValue(':' . $parm->getID() , $parm->getValue(), $parm->getType());
+                    $stmt->bindValue(':' . $parm->getID() , $parm->getValue(), $parm->getType());
                 }
 
                 $stmt->execute();
                 return $stmt;
             }
             catch (Exception $error) {
-                throw new Exception($error);
+               // throw $error;//new Exception($error);
             }
          }
 
