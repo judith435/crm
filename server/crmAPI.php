@@ -1,4 +1,6 @@
 <?php
+    error_reporting(0);
+    
     require_once 'Lead.php';
     require_once 'Prospect.php';
     require_once 'Product.php';
@@ -34,13 +36,7 @@
             echo json_encode($leads);
         }
         catch (Exception $error) {
-            ErrorHandling::LogError($error); 
-            $response_array = array(
-                "status" => "error",
-                "message" => "server error please contact support center",
-            );
-            $ttt = json_encode($response_array);
-            echo "I do no know 2222";//$response_array;
+            ErrorHandling::HandleError($error); 
         }
     }
 
@@ -55,27 +51,32 @@
             echo json_encode($products);
         }
         catch (Exception $error) {
-            ErrorHandling::LogError($error); 
+            ErrorHandling::HandleError($error); 
         }
 
     }
 
     function AddLead(){
-        $leadName = trim($_POST["leadName"]);
-        $leadPhone = trim($_POST["leadPhone"]);
-        $product = explode(",", $_POST["product"]);//
-        $errorInInput = "";
-        Lead::addLead($leadName, $leadPhone, $product[0], $product[1], $errorInInput);
-        if ($errorInInput != "") {
-            $response_array['status'] = 'error';  
-            $response_array['message'] = $errorInInput; 
-            // header('Content-type: application/json');
+        try {
+                $leadName = trim($_POST["leadName"]);
+                $leadPhone = trim($_POST["leadPhone"]);
+                $product = explode(",", $_POST["product"]);
+                $errorInInput = "";
+                Lead::addLead($leadName, $leadPhone, $product[0], $product[1], $errorInInput);
+                if ($errorInInput != "") {
+                    $response_array['status'] = 'error';  
+                    $response_array['message'] = $errorInInput; 
+                }
+                else {
+                    $response_array['status'] = 'ok';  
+                    $response_array['message'] = 'lead added successfully'; 
+                }
+                echo json_encode($response_array);
         }
-        else {
-            $response_array['status'] = 'ok';  
-            $response_array['message'] = 'lead added successfully'; 
+        catch (Exception $error) {
+            ErrorHandling::HandleError($error); 
         }
-        echo json_encode($response_array);
+
     }
         
         

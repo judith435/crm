@@ -42,9 +42,9 @@
                 }
                 return $allProducts;
             }
-                catch (Exception $error) {
-                   // throw $error;
-                }
+            catch (Exception $error) {
+                throw $error;
+            }
 
         }
 

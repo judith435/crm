@@ -1,4 +1,5 @@
 <?php
+    error_reporting(0);
     require_once 'Dal/Connection.php';
     require_once 'Dal/PDO_Parm.php';
 
@@ -70,25 +71,29 @@
         }
 
         public static function getProspects() {
-        //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
-            $emptyParms = []; 
-            $allProspects = array();
-            
-            $resultSet = BusinessLogicLayer::get('crm', 'get_Prospects', $emptyParms);
-            
-            while ($row = $resultSet->fetch())
+            try {
+            //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
+                $emptyParms = []; 
+                $allProspects = array();
+                
+                $resultSet = BusinessLogicLayer::get('crm', 'get_Prospects', $emptyParms);
+                
+                while ($row = $resultSet->fetch())
 
-            {                           
-               array_push($allProspects, new Prospect($row['prospect_id'], 
-                                                      $row['prospect_name'], 
-                                                      $row['prospect_phone'], 
-                                                      $row['lead_id'], 
-                                                      $row['product_id'], 
-                                                      $row['product_name']));
+                {                           
+                array_push($allProspects, new Prospect($row['prospect_id'], 
+                                                       $row['prospect_name'], 
+                                                       $row['prospect_phone'], 
+                                                       $row['lead_id'], 
+                                                       $row['product_id'], 
+                                                       $row['product_name']));
+                }
+                return $allProspects;
             }
-            return $allProspects;
+            catch (Exception $error) {
+                throw $error;
+            }
         }
 
     }
 
-//prospects.id as prospect_id,prospects.prospect_name,prospects.prospect_phone,prospects.lead_id,leads.product_id,products.product_name

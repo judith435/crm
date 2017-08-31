@@ -2,8 +2,14 @@
 
     class ErrorHandling { 
 
+        public static function HandleError($Error) {
+            Self::LogError($Error);
+            $response_array['status'] = 'error';  
+            $response_array['message'] =  "server error please contact support center"; 
+            echo json_encode($response_array);
+        }
 
-        public static function LogError($Error) {
+        private static function LogError($Error) {
             $ErrorFile = fopen("ErrorLog.txt", "a") or die("Unable to open file!");
             $txt = "******************************************************************************************************************************" .PHP_EOL;
             fwrite($ErrorFile, $txt);

@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 require_once 'Share/Validations.php';
 require_once 'Bll/BusinessLogicLayer.php';
 
@@ -70,20 +70,11 @@ require_once 'Bll/BusinessLogicLayer.php';
 
         public static function getLeads() {
             try {
-                // $sp = $con->executeSP("get_Leads", $emptyParms);
-                // $allLeads = array();
-                // $errors = "";
-                // while ($row = $sp->fetch())
-                //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
-
-                //select statement has no parameters for sql statement -> must send empty parms: executeSP is general function that executes sql sp with and without parameters
                 $emptyParms = []; 
                 $allLeads = array();
                 $errors = "";
-                $con = new Connection('crm'); //@@@@@@@@@@@@@@@@@@@@@@@
-                //$resultSet = BusinessLogicLayer::get('crm', 'get_Leads', $emptyParms);
-                $resultSet = $con->executeSP("get_LeadsX", $emptyParms);  //@@@@@@@@@@@@@@@@@@@@@@@  
-                 
+
+                $resultSet = BusinessLogicLayer::get('crm', 'get_Leads', $emptyParms);
                 while ($row = $resultSet->fetch())
                 {                           
                   array_push($allLeads, new Lead($row['lead_id'], $row['lead_name'], $row['lead_phone'], $row['product_id'], $row['product_name'], $errors));
@@ -91,36 +82,45 @@ require_once 'Bll/BusinessLogicLayer.php';
                 return $allLeads;
             }
             catch (Exception $error) {
-                //throw $error;//new Exception($error);
+                throw $error;
             }
         }
 
         public static function addLead($ld_name, $ld_phone, $prod_id, $prod_name, &$errorInInput) {
             try {
                     $Lead = new Lead(0, $ld_name, $ld_phone, $prod_id, $prod_name, $errorInInput);
-                    if ($errorInInput != "") {
+                    if ($errorInInput != "") { //error found in data members of lead object
                         return;
                     }
                     $Parms =  array();
                     array_push($Parms, new PDO_Parm("lead_name", $Lead -> getLeadName(), 'string')); 
                     array_push($Parms, new PDO_Parm("lead_phone", $Lead -> getLeadPhone(), 'string'));
                     array_push($Parms, new PDO_Parm("product_id", $Lead -> getProduct_ID(), 'integer'));
+                    $lead = BusinessLogicLayer::get('crm', 'check_Lead_exists', $Parms);
+                    if ($lead->rowCount() > 0) { // lead with same name, phone & product already exists
+                        $errorInInput = "lead with same name, phone & product already exists";
+                        return;
+                    }
                     BusinessLogicLayer::update('crm', 'insert_lead', $Parms);
-                    echo 'new lead added successfully';
             }
             catch (Exception $error) {
-                //throw $error;//new Exception($error);
+                throw $error;
             }
         }
 
         public function jsonSerialize() {
-            return  [
-                        'id' => $this->getID(),
-                        'lead_name' => $this->getLeadName(),
-                        'lead_phone' => $this->getLeadPhone(),
-                        'product_id' => $this->getProduct_ID(),
-                        'product_name' => $this->getProduct_Name()
-                    ];
-        }
+            try {
+                    return  [
+                                'id' => $this->getID(),
+                                'lead_name' => $this->getLeadName(),
+                                'lead_phone' => $this->getLeadPhone(),
+                                'product_id' => $this->getProduct_ID(),
+                                'product_name' => $this->getProduct_Name()
+                            ];
+                }
+                catch (Exception $error) {
+                    throw $error;
+                }
     }
+}
 

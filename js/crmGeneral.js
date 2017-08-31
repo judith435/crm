@@ -7,9 +7,9 @@
 var crmGeneral = (function() {
     var app = {
         debugMode: true,   
-        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
 
@@ -18,11 +18,14 @@ var crmGeneral = (function() {
             case "Show Leads":
                 Show_Leads();
                 break;
-            case "Show Prospects":
-                Show_Prospects();
-                break;
             case "Create Lead":
                 Get_Products();
+                break;
+            case "Delete Lead":
+                Delete_Lead();
+                break;
+            case "Show Prospects":
+                Show_Prospects();
                 break;
         }
     });
@@ -46,6 +49,9 @@ var crmGeneral = (function() {
     }
 
     function Show_Leads(){
+
+        $("#LeadsTable").load("../templates/leads-table.html");
+
         $.ajax({    
                     type: 'POST',
                     url: app.crmApi,
@@ -86,6 +92,27 @@ var crmGeneral = (function() {
                         }
                     });
             });
+    }
+
+
+    function Delete_Lead(){
+        Show_Leads();
+        document.getElementById("LeadsTable").addEventListener("click", function() {
+            var tala = this;
+            alert("kuku");
+        });
+        $("#LeadsTable tr").click(function(){
+            $(this).find("td").each(function(){
+                alert($(this).html());
+            });
+        });
+        $(document).on('click','#LeadsTable tr',function(e){
+            alert(this.data('message'));
+         })
+        // $("#tblLeads tr").click(function() {
+        //     alert("kuku");
+        //   //  alert($(this).children("td").html());
+        //  });
     }
 
     function Show_Prospects(){

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRM</title>
+    <link rel="stylesheet"    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"      crossorigin="anonymous">
+    <!-- site css file placed after bootstrap files to enable overriding of bootstrap styles --> 
+    <link rel="stylesheet" href="css/crm.css"/> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+    </script>
+</head>
+<body>  
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">CRM Management</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Leads
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="Lead_FrontEnd/select.html">Show Leads</a></li>
+                <li><a href="Lead_FrontEnd/create.html">Create Lead</a></li>
+                <li><a href="#">Update Lead</a></li>
+                <li><a href="Lead_FrontEnd/delete.html">Delete Lead</a></li>
+            </ul>
+            </li>
+            <li><a href="#">Prospects</a></li>
+            <li><a href="#">Customes</a></li>
+          </ul>
+        </div>
+      </nav>
+    <script src='js/crmGeneral.js'></script> 
+</body>
+</html>
+

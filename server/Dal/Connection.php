@@ -1,4 +1,6 @@
 <?php
+    error_reporting(0);
+    
     require_once 'Share/ErrorHandling.php';
         
     class Connection {
@@ -38,7 +40,7 @@
                 return $stmt;
             }
             catch (Exception $error) {
-               // throw $error;//new Exception($error);
+                throw $error;
             }
         }
 
@@ -61,7 +63,7 @@
                 return $stmt;
             }
             catch (Exception $error) {
-               // throw $error;//new Exception($error);
+                throw $error;
             }
          }
 
