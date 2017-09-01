@@ -17,7 +17,7 @@ $(document).ready(function () {
         leadPhone: "Please specify a valid phone#"
     },
     submitHandler: function() {
-        crmGeneral.ajaxSubmit();
+        crmGeneral.ajaxSubmit("UpdateInsert");
       }
   });
 });

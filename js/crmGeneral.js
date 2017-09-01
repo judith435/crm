@@ -1,9 +1,3 @@
-// (function() {
-//     // Your code here
-
-//     // Expose to global
-//     window['varName'] = varName;
-// })();
 var crmGeneral = (function() {
     var app = {
         debugMode: true,   
@@ -21,11 +15,11 @@ var crmGeneral = (function() {
             case "Create Lead":
                 Get_Products();
                 break;
+            case "Update Lead":
+                Update_Lead();
+                break;
             case "Delete Lead":
                 Delete_Lead();
-                break;
-            case "Show Prospects":
-                Show_Prospects();
                 break;
         }
     });
@@ -49,7 +43,6 @@ var crmGeneral = (function() {
     }
 
     function Show_Leads(){
-
         $("#LeadsTable").load("../templates/leads-table.html");
 
         $.ajax({    
@@ -78,9 +71,8 @@ var crmGeneral = (function() {
                                                 data[i].product_name,
                                                 ));
                     }      
-
-                    $.ajax('../templates/lead-template.html')
-                    .done(function(data) {
+                    $.ajax('../templates/lead-template.html').done(function(data) {
+                        $("#leads").html("");
                         for(let i=0; i < leadsArray.length; i++) {
                             let template = data;
                             template = template.replace("{{id}}", leadsArray[i].id);
@@ -88,12 +80,26 @@ var crmGeneral = (function() {
                             template = template.replace("{{lead_phone}}", leadsArray[i].lead_phone);
                             template = template.replace("{{product_id}}", leadsArray[i].product_id);
                             template = template.replace("{{product_name}}", leadsArray[i].product_name);
-                            $('.leads').append(template);
+                            $('#leads').append(template);
                         }
                     });
             });
     }
 
+    function Update_Lead(){
+        Show_Leads();
+        // $(document).on('click','#LeadsTable tr',function(e){
+        //     var leadNumber = $(this).find('td:first').text();
+        //     var confirmation = confirm('Are you sure you want to delete lead number ' + leadNumber + "?");
+        //     if (confirmation == true) {
+        //         var asp = new AjaxSubmitParms("delete", "lead", leadNumber)
+        //         ajaxSubmit(asp);
+        //     } 
+        //     else {
+        //         alert("You pressed Cancel!");
+        //     }
+        //  })
+        }
 
     function Delete_Lead(){
         Show_Leads();
@@ -101,36 +107,14 @@ var crmGeneral = (function() {
             var leadNumber = $(this).find('td:first').text();
             var confirmation = confirm('Are you sure you want to delete lead number ' + leadNumber + "?");
             if (confirmation == true) {
-                ajaxSubmit(leadNumber);
+                var asp = new AjaxSubmitParms("delete", "lead", leadNumber)
+                ajaxSubmit(asp);
             } 
             else {
                 alert("You pressed Cancel!");
             }
          })
-        Show_Leads();
         }
-
-    function Show_Prospects(){
-        $.ajax({    
-                    type: 'POST',
-                    url: app.crmApi,
-                    data: {action: 'getLeads'},
-            })
-                .done(function(data) {
-            if (app.debugMode) {
-                console.log("crmApi response");
-                console.log(data);
-            }
-            //data = JSON.parse(data);
-            var stringi = JSON.stringify(data);
-            $("#content").text(stringi);
-            // for(let i=0; i < data.length; i++) {
-            //     var ttt = i;
-            //       $("#leads").append(data[i]);
-
-            // }
-        });
-    }
 
     function Lead(id, lead_name, lead_phone, product_id, product_name) {
         this.id = id;
@@ -145,13 +129,23 @@ var crmGeneral = (function() {
         e.preventDefault();
     });
 
-    function ajaxSubmit(iddi){
-        var toto =  $('form').serialize();
-        var yu = 9;
+    function AjaxSubmitParms(action, entity, id) {
+        this.action = action;
+        this.entity = entity;
+        this.id = id;
+    }
+
+    function ajaxSubmit(asp){
+        if (asp.action == "delete"){
+            var ajaxData = asp;
+        }
+        else {
+            var ajaxData =  $('form').serialize();
+        }
         $.ajax({
             type: "POST",
             url:  app.crmApi,
-            data:  {action: 'Delete', entity: 'Lead', id : iddi }, //$('form').serialize(),
+            data:  ajaxData,//{action: 'Delete', entity: 'Lead', id : iddi }, //$('form').serialize(),
             success: function(data){
                 if (app.debugMode) {
                     console.log("crmApi response");
@@ -160,6 +154,14 @@ var crmGeneral = (function() {
                 data = JSON.parse(data);
                 // data.message conatains CUD confirmation if successful or application errors => e.g. missing product if not
                 alert(data.message); 
+                if(asp.action == "delete"){ //if action was delete update show new entitiy table
+                    switch (asp.entity) {
+                        case "lead":
+                            Show_Leads();
+                            break;
+                    }
+             
+                }
             },
             // systen errors caused by a bad connection, timeout, invalid url  
             error:function(data){

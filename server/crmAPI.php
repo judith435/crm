@@ -26,8 +26,8 @@
         case 'AddLead':
             AddLead();  
             break;
-        case 'Delete':
-        DeleteLead();  
+        case 'delete':
+            DeleteLead();  
             break;
         default:
             die('Access denied for this function!');

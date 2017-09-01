@@ -8,3 +8,23 @@ file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 87 => function: delet
 file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 30 => function: DeleteLead => class:  => type: 
 Message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'lead_id' in 'where clause'
 Code: 42S22
+******************************************************************************************************************************
+Error occured at 2017-09-01 10:54:33
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\Dal\Connection.php => line: 62 => function: execute => class: PDOStatement => type: ->
+file: C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php => line: 55 => function: executeSP => class: Connection => type: ->
+file: C:\xampp\htdocs\joint\crm\server\Lead.php => line: 115 => function: update => class: BusinessLogicLayer => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 87 => function: deleteLead => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 30 => function: DeleteLead => class:  => type: 
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`crm`.`prospects`, CONSTRAINT `fk_prospects_leads` FOREIGN KEY (`lead_id`) REFERENCES `leads` (`id`))
+Code: 23000
+******************************************************************************************************************************
+Error occured at 2017-09-01 11:54:36
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\Dal\Connection.php => line: 62 => function: execute => class: PDOStatement => type: ->
+file: C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php => line: 55 => function: executeSP => class: Connection => type: ->
+file: C:\xampp\htdocs\joint\crm\server\Lead.php => line: 115 => function: update => class: BusinessLogicLayer => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 87 => function: deleteLead => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 30 => function: DeleteLead => class:  => type: 
+Message: SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`crm`.`prospects`, CONSTRAINT `fk_prospects_leads` FOREIGN KEY (`lead_id`) REFERENCES `leads` (`id`))
+Code: 23000
