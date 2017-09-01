@@ -108,6 +108,17 @@ require_once 'Bll/BusinessLogicLayer.php';
             }
         }
 
+        public static function deleteLead($ld_id) {
+            try {
+                    $Parms =  array();
+                    array_push($Parms, new PDO_Parm("lead_id", $ld_id, 'integer')); 
+                    BusinessLogicLayer::update('crm', 'delete_lead', $Parms);
+            }
+            catch (Exception $error) {
+                throw $error;
+            }
+        }
+        
         public function jsonSerialize() {
             try {
                     return  [

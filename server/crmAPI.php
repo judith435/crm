@@ -5,7 +5,7 @@
     require_once 'Prospect.php';
     require_once 'Product.php';
     
-    if(isset($_POST['action']) && function_exists($_POST['action'])) {
+    if(isset($_POST['action'])) {  // && function_exists($_POST['action'])
         $action = $_POST['action'];
     }
     else
@@ -25,6 +25,9 @@
             break;
         case 'AddLead':
             AddLead();  
+            break;
+        case 'Delete':
+        DeleteLead();  
             break;
         default:
             die('Access denied for this function!');
@@ -65,7 +68,7 @@
                 Lead::addLead($leadName, $leadPhone, $product[0], $product[1], $errorInInput);
                 if ($errorInInput != "") {
                     $response_array['status'] = 'error';  
-                    $response_array['message'] = $errorInInput; 
+                    $response_array['message'] = 'Error from Server: ' . $errorInInput; 
                 }
                 else {
                     $response_array['status'] = 'ok';  
@@ -76,9 +79,20 @@
         catch (Exception $error) {
             ErrorHandling::HandleError($error); 
         }
-
     }
         
-        
+    function DeleteLead(){
+        try {
+                $leadID = trim($_POST["id"]);
+                Lead::deleteLead($leadID);
+                $response_array['status'] = 'ok';  
+                $response_array['message'] = 'lead deleted successfully'; 
+                echo json_encode($response_array);
+        }
+        catch (Exception $error) {
+            ErrorHandling::HandleError($error); 
+        }
+    }
+    
 
 ?>

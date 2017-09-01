@@ -7,9 +7,9 @@
 var crmGeneral = (function() {
     var app = {
         debugMode: true,   
-        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
 
@@ -97,23 +97,18 @@ var crmGeneral = (function() {
 
     function Delete_Lead(){
         Show_Leads();
-        document.getElementById("LeadsTable").addEventListener("click", function() {
-            var tala = this;
-            alert("kuku");
-        });
-        $("#LeadsTable tr").click(function(){
-            $(this).find("td").each(function(){
-                alert($(this).html());
-            });
-        });
         $(document).on('click','#LeadsTable tr',function(e){
-            alert(this.data('message'));
+            var leadNumber = $(this).find('td:first').text();
+            var confirmation = confirm('Are you sure you want to delete lead number ' + leadNumber + "?");
+            if (confirmation == true) {
+                ajaxSubmit(leadNumber);
+            } 
+            else {
+                alert("You pressed Cancel!");
+            }
          })
-        // $("#tblLeads tr").click(function() {
-        //     alert("kuku");
-        //   //  alert($(this).children("td").html());
-        //  });
-    }
+        Show_Leads();
+        }
 
     function Show_Prospects(){
         $.ajax({    
@@ -150,20 +145,21 @@ var crmGeneral = (function() {
         e.preventDefault();
     });
 
-    function ajaxSubmit(){
+    function ajaxSubmit(iddi){
+        var toto =  $('form').serialize();
+        var yu = 9;
         $.ajax({
             type: "POST",
             url:  app.crmApi,
-            data: $('form').serialize(),
+            data:  {action: 'Delete', entity: 'Lead', id : iddi }, //$('form').serialize(),
             success: function(data){
+                if (app.debugMode) {
+                    console.log("crmApi response");
+                    console.log(data);
+                }
                 data = JSON.parse(data);
-                // application errors => e.g. missing product 
-                if (data.status == "error"){ 
-                    alert("Error from Server: " + data.message);
-                }
-                else{
-                    alert("lead added successfully");
-                }
+                // data.message conatains CUD confirmation if successful or application errors => e.g. missing product if not
+                alert(data.message); 
             },
             // systen errors caused by a bad connection, timeout, invalid url  
             error:function(data){
