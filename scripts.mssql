@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`professions` (
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -36,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`products` (
   `product_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 5
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -54,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`leads` (
     FOREIGN KEY (`product_id`)
     REFERENCES `crm`.`products` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -100,6 +101,36 @@ DEFAULT CHARACTER SET = hebrew;
 USE `crm` ;
 
 -- -----------------------------------------------------
+-- procedure check_Lead_exists
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `crm`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `check_Lead_exists`(IN ld_name VARCHAR(45), IN ld_phone  VARCHAR(10), in prod_id int )
+BEGIN
+
+	SELECT id FROM leads WHERE lead_name = ld_name  AND lead_phone = ld_phone and product_id = prod_id;
+    
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure delete_Lead
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `crm`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `delete_Lead`(IN ld_id int)
+BEGIN
+
+	Delete FROM leads WHERE id = ld_id;
+    
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
 -- procedure get_Leads
 -- -----------------------------------------------------
 
@@ -134,9 +165,9 @@ BEGIN
 	SELECT   id,
 			 product_name
 	FROM products
-    union 
-    select 	0 as id , 
-			'' as product_name 
+    union
+    select  0 as id,
+			'' as product_name
     order by  product_name;
     
 END$$
