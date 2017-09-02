@@ -86,7 +86,12 @@ require_once 'Bll/BusinessLogicLayer.php';
             }
         }
 
-        public static function addLead($ld_name, $ld_phone, $prod_id, $prod_name, &$errorInInput) {
+        public static function add_update_Lead( $action, 
+                                                $ld_name, 
+                                                $ld_phone, 
+                                                $prod_id, 
+                                                $prod_name, 
+                                                &$errorInInput) {
             try {
                     $Lead = new Lead(0, $ld_name, $ld_phone, $prod_id, $prod_name, $errorInInput);
                     if ($errorInInput != "") { //error found in data members of lead object
@@ -101,7 +106,11 @@ require_once 'Bll/BusinessLogicLayer.php';
                         $errorInInput = "lead with same name, phone & product already exists";
                         return;
                     }
-                    BusinessLogicLayer::update('crm', 'insert_lead', $Parms);
+                    if ($action == "UpdateLead") {
+                        array_unshift($Parms, new PDO_Parm("lead_id", $Lead -> getID(), 'integer'));
+                    }
+                    $spName = $action == "AddLead" ? 'insert_lead' : 'update_lead';
+                    BusinessLogicLayer::update('crm', $spName, $Parms);
             }
             catch (Exception $error) {
                 throw $error;

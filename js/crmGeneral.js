@@ -14,7 +14,11 @@ var crmGeneral = (function() {
                 break;
             case "Create Lead":
                 Get_Products();
-                break;
+                // $("#CreateUpdateDiv").load("../templates/create-lead-template.html");
+                $.ajax('../templates/create-lead-template.html').done(function(data) {
+                    $('#CreateUpdateDiv').prepend(data);
+                });
+                 break;
             case "Update Lead":
                 Update_Lead();
                 break;
@@ -43,7 +47,7 @@ var crmGeneral = (function() {
     }
 
     function Show_Leads(){
-        $("#LeadsTable").load("../templates/leads-table.html");
+        $("#LeadsTable").load("../templates/leads-table-template.html");
 
         $.ajax({    
                     type: 'POST',
@@ -87,19 +91,33 @@ var crmGeneral = (function() {
     }
 
     function Update_Lead(){
+        $("#btnUpdateLead").hide();
         Show_Leads();
-        // $(document).on('click','#LeadsTable tr',function(e){
-        //     var leadNumber = $(this).find('td:first').text();
-        //     var confirmation = confirm('Are you sure you want to delete lead number ' + leadNumber + "?");
-        //     if (confirmation == true) {
-        //         var asp = new AjaxSubmitParms("delete", "lead", leadNumber)
-        //         ajaxSubmit(asp);
-        //     } 
-        //     else {
-        //         alert("You pressed Cancel!");
-        //     }
-        //  })
-        }
+        $(document).on('click','#LeadsTable tr',function(e){
+            var leadNumber = $(this).find('td:first').text();
+            var leadName = $(this).find('td:nth-child(2)').text();
+            var leadPhone = $(this).find('td:nth-child(3)').text();
+            var productID = $(this).find('td:nth-child(4)').text();
+            var productName = $(this).find('td:nth-child(5)').text();
+            // alert ("leadNumber  " + leadNumber +"leadName " + leadName + "leadPhone " + leadPhone +
+            // "productID " + productID + "productName " + productName);
+            
+            var lead = new Lead(leadNumber, 
+                                leadName,
+                                leadPhone,
+                                productID,
+                                productName)
+            $.ajax('../templates/create-lead-template.html').done(function(data) {
+                $("#tblCUD").html("");
+                $('#CreateUpdateDiv').prepend(data);
+                $('#leadName').attr("value", leadName);
+                $('#leadPhone').attr("value", leadPhone);
+                $("#btnUpdateLead").show();
+                Get_Products();
+            });
+
+        })
+    }
 
     function Delete_Lead(){
         Show_Leads();

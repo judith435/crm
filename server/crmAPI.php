@@ -24,7 +24,8 @@
             getProducts();  
             break;
         case 'AddLead':
-            AddLead();  
+        case 'UpdateLead':
+            Add_Update_Lead($action);  
             break;
         case 'delete':
             DeleteLead();  
@@ -59,20 +60,25 @@
 
     }
 
-    function AddLead(){
+    function Add_Update_Lead($action){
         try {
                 $leadName = trim($_POST["leadName"]);
                 $leadPhone = trim($_POST["leadPhone"]);
                 $product = explode(",", $_POST["product"]);
                 $errorInInput = "";
-                Lead::addLead($leadName, $leadPhone, $product[0], $product[1], $errorInInput);
+                Lead::add_update_Lead($action, 
+                                      $leadName, 
+                                      $leadPhone, 
+                                      $product[0], 
+                                      $product[1], 
+                                      $errorInInput);
                 if ($errorInInput != "") {
                     $response_array['status'] = 'error';  
                     $response_array['message'] = 'Error from Server: ' . $errorInInput; 
                 }
                 else {
                     $response_array['status'] = 'ok';  
-                    $response_array['message'] = 'lead added successfully'; 
+                    $response_array['message'] = 'lead' . ($action == "AddLead" ? ' added ' : ' updated ')  . 'successfully'; 
                 }
                 echo json_encode($response_array);
         }
