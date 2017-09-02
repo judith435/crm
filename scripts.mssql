@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `crm`.`leads` (
     FOREIGN KEY (`product_id`)
     REFERENCES `crm`.`products` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 29
 DEFAULT CHARACTER SET = hebrew;
 
 
@@ -217,6 +217,28 @@ BEGIN
 	(lead_name,
 	 lead_phone,
 	 product_id);    
+    
+END$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure update_lead
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `crm`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_lead`(IN ld_id Int,
+														  IN ld_name VARCHAR(45), 
+														  IN ld_phone VARCHAR(10), 
+                                                          IN prod_id Int)
+BEGIN
+
+    update `crm`.`leads`
+	set `lead_name` = ld_name,
+	 `lead_phone` = ld_phone,
+	 `product_id` = prod_id
+	WHERE `id` = ld_id;   
     
 END$$
 
