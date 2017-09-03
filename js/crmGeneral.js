@@ -1,9 +1,9 @@
 var crmGeneral = (function() {
     var app = {
         debugMode: true,   
-        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
 
@@ -14,7 +14,6 @@ var crmGeneral = (function() {
                 break;
             case "Create Lead":
                 Get_Products();
-                // $("#CreateUpdateDiv").load("../templates/create-lead-template.html");
                 $.ajax('../templates/create-lead-template.html').done(function(data) {
                     $('#CreateUpdateDiv').prepend(data);
                 });
@@ -28,23 +27,6 @@ var crmGeneral = (function() {
         }
     });
 
-    function Get_Products(){
-        $.ajax({    
-            type: 'POST',
-            url: app.crmApi,
-            data: {action: 'getProducts'},
-        })
-        .done(function(data) {
-            if (app.debugMode) {
-                console.log("crmApi response");
-                console.log(data);
-            }
-            data = JSON.parse(data);
-            for(let i=0; i < data.length; i++) {
-                $("#ProductDDL").append(new Option(data[i].name, data[i].id + ',' + data[i].name));
-            }
-        });
-    }
 
     function Show_Leads(){
         $("#LeadsTable").load("../templates/leads-table-template.html");
@@ -89,9 +71,27 @@ var crmGeneral = (function() {
                     });
             });
     }
+    
+    function Get_Products(){
+        $.ajax({    
+            type: 'POST',
+            url: app.crmApi,
+            data: {action: 'getProducts'},
+        })
+        .done(function(data) {
+            if (app.debugMode) {
+                console.log("crmApi response");
+                console.log(data);
+            }
+            data = JSON.parse(data);
+            for(let i=0; i < data.length; i++) {
+                $("#ProductDDL").append(new Option(data[i].name, data[i].id + ',' + data[i].name));
+            }
+        });
+    }
 
     function Update_Lead(){
-        $("#btnUpdateLead").hide();
+        $("#btnUpdateLead , #leadTitle").hide();
         Show_Leads();
         $(document).on('click','#LeadsTable tr',function(e){
             var leadNumber = $(this).find('td:first').text();
@@ -99,21 +99,21 @@ var crmGeneral = (function() {
             var leadPhone = $(this).find('td:nth-child(3)').text();
             var productID = $(this).find('td:nth-child(4)').text();
             var productName = $(this).find('td:nth-child(5)').text();
-            // alert ("leadNumber  " + leadNumber +"leadName " + leadName + "leadPhone " + leadPhone +
-            // "productID " + productID + "productName " + productName);
-            
             var lead = new Lead(leadNumber, 
                                 leadName,
                                 leadPhone,
                                 productID,
-                                productName)
+                                productName);
             $.ajax('../templates/create-lead-template.html').done(function(data) {
-                $("#tblCUD").html("");
-                $('#CreateUpdateDiv').prepend(data);
-                $('#leadName').attr("value", leadName);
-                $('#leadPhone').attr("value", leadPhone);
+                $("#CreateUpdateDivFields").html(""); 
+                $('#CreateUpdateDivFields').prepend(data);
+                $('#leadName').attr("value", lead.lead_name);
+                $('#leadPhone').attr("value", lead.lead_phone);
+                $('#leadID').attr("value", lead.id);
+                $("#leadTitle").text("Lead# being updated: " + lead.id).show();
                 $("#btnUpdateLead").show();
                 Get_Products();
+                $("#ProductDDL").val(lead.product_id);
             });
 
         })
@@ -163,7 +163,7 @@ var crmGeneral = (function() {
         $.ajax({
             type: "POST",
             url:  app.crmApi,
-            data:  ajaxData,//{action: 'Delete', entity: 'Lead', id : iddi }, //$('form').serialize(),
+            data:  ajaxData,
             success: function(data){
                 if (app.debugMode) {
                     console.log("crmApi response");
@@ -171,14 +171,19 @@ var crmGeneral = (function() {
                 }
                 data = JSON.parse(data);
                 // data.message conatains CUD confirmation if successful or application errors => e.g. missing product if not
-                alert(data.message); 
-                if(asp.action == "delete"){ //if action was delete update show new entitiy table
-                    switch (asp.entity) {
-                        case "lead":
-                            Show_Leads();
-                            break;
-                    }
-             
+                alert(data.status + " " + data.action + " " + data.message); 
+                if(data.status == 'error') { return; }
+                if(data.action == "delete" || data.action == "UpdateLead" ){ //if action was delete update show new entitiy table
+                    Show_Leads();
+                    // switch (asp.entity) { => for future use
+                    //     case "lead":
+                    //         Show_Leads();
+                    //         break;
+                    // }
+                }
+                if(data.action == "UpdateLead") {
+                    $("#CreateUpdateDivFields").html("");  
+                    $("#btnUpdateLead , #leadTitle").hide();
                 }
             },
             // systen errors caused by a bad connection, timeout, invalid url  

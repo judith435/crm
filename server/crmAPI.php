@@ -28,7 +28,7 @@
             Add_Update_Lead($action);  
             break;
         case 'delete':
-            DeleteLead();  
+            DeleteLead($action);  
             break;
         default:
             die('Access denied for this function!');
@@ -62,11 +62,13 @@
 
     function Add_Update_Lead($action){
         try {
+                $leadID = $action == "AddLead" ? 0 : trim($_POST["leadID"]);//$_POST["leadID"] exists only in case of update
                 $leadName = trim($_POST["leadName"]);
                 $leadPhone = trim($_POST["leadPhone"]);
                 $product = explode(",", $_POST["product"]);
                 $errorInInput = "";
                 Lead::add_update_Lead($action, 
+                                      $leadID, 
                                       $leadName, 
                                       $leadPhone, 
                                       $product[0], 
@@ -74,10 +76,12 @@
                                       $errorInInput);
                 if ($errorInInput != "") {
                     $response_array['status'] = 'error';  
+                    $response_array['action'] = $action;
                     $response_array['message'] = 'Error from Server: ' . $errorInInput; 
                 }
                 else {
-                    $response_array['status'] = 'ok';  
+                    $response_array['status'] = 'ok'; 
+                    $response_array['action'] = $action;
                     $response_array['message'] = 'lead' . ($action == "AddLead" ? ' added ' : ' updated ')  . 'successfully'; 
                 }
                 echo json_encode($response_array);
@@ -87,11 +91,12 @@
         }
     }
         
-    function DeleteLead(){
+    function DeleteLead($action){
         try {
                 $leadID = trim($_POST["id"]);
                 Lead::deleteLead($leadID);
                 $response_array['status'] = 'ok';  
+                $response_array['action'] = $action;
                 $response_array['message'] = 'lead deleted successfully'; 
                 echo json_encode($response_array);
         }

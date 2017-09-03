@@ -10,6 +10,8 @@
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
     <!-- site css file placed after bootstrap files to enable overriding of bootstrap styles --> 
+    <!-- <link rel="stylesheet/less" type="text/css" href="../css/styles.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js"></script> -->
     <link rel="stylesheet" href="../css/crm.css"/> 
 </head>
 <body> 
@@ -19,8 +21,11 @@
         <div id="LeadsTable">
         </div>
         <form id="frmCUD">
-            <div id="CreateUpdateDiv">
-                <input  type="hidden"  name="action" value="UpdateLead" >
+            <div  class="well" id="leadTitle" ></div>
+            <div id="CreateUpdateDivFields"></div>
+            <div id="CreateUpdateDivControls">
+                <input  type="hidden" id="action" name="action" value="UpdateLead" >
+                <input  type="hidden" id="leadID" name="leadID" value="0" >
                 <div class="form-group">
                     <button class="btnAdd btn btn-primary" id="btnUpdateLead" name="action" value="UpdateLead">Update Lead</button>
                 </div>

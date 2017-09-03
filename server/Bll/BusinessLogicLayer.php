@@ -4,7 +4,37 @@
     require_once 'Dal/Connection.php';
     require_once 'Dal/PDO_Parm.php';
 
-    // interface IBLL
+
+
+    class BusinessLogicLayer {
+        // REFACTOR: use Builder pattern
+        /*
+            $table_name: string
+            $arr: [field] => [value]
+            $conds: [field] => []
+        */
+        public static function update($db, $spName, $SP_parms) {
+            try {
+                $con = new Connection($db);  
+                $con->executeSP($spName, $SP_parms);
+            }
+            catch (Exception $error) {
+                throw $error;
+            }
+        }
+
+        public static function get($db, $spName, $SP_parms) {
+            try {
+                $con = new Connection($db);  
+                return $con->executeSP($spName, $SP_parms);
+            }
+            catch (Exception $error) {
+                throw $error;
+            }
+        }
+    }
+
+        // interface IBLL
     // {
     //     // public function setVariable($name, $var);
     //     // public function getHtml($template);
@@ -41,32 +71,5 @@
 
     // }
 
-
-    class BusinessLogicLayer {
-        // REFACTOR: use Builder pattern
-        /*
-            $table_name: string
-            $arr: [field] => [value]
-            $conds: [field] => []
-        */
-        public static function update($db, $spName, $SP_parms) {
-            try {
-                $con = new Connection($db);  
-                $con->executeSP($spName, $SP_parms);
-            }
-            catch (Exception $error) {
-                throw $error;
-            }
-        }
-
-        public static function get($db, $spName, $SP_parms) {
-            try {
-                $con = new Connection($db);  
-                return $con->executeSP($spName, $SP_parms);
-            }
-            catch (Exception $error) {
-                throw $error;
-            }
-        }
-    }
 ?>
+

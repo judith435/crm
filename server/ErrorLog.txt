@@ -38,3 +38,13 @@ file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 73 => function: add_u
 file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 28 => function: Add_Update_Lead => class:  => type: 
 Message: SQLSTATE[42000]: Syntax error or access violation: 1318 Incorrect number of arguments for PROCEDURE crm.insert_lead; expected 3, got 4
 Code: 42000
+******************************************************************************************************************************
+Error occured at 2017-09-03 10:05:32
+Trace:
+file: C:\xampp\htdocs\joint\crm\server\Dal\Connection.php => line: 62 => function: execute => class: PDOStatement => type: ->
+file: C:\xampp\htdocs\joint\crm\server\Bll\BusinessLogicLayer.php => line: 55 => function: executeSP => class: Connection => type: ->
+file: C:\xampp\htdocs\joint\crm\server\Lead.php => line: 124 => function: update => class: BusinessLogicLayer => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 93 => function: deleteLead => class: Lead => type: ::
+file: C:\xampp\htdocs\joint\crm\server\crmAPI.php => line: 31 => function: DeleteLead => class:  => type: 
+Message: SQLSTATE[42000]: Syntax error or access violation: 1305 PROCEDURE crm.delete_lead does not exist
+Code: 42000

@@ -87,13 +87,14 @@ require_once 'Bll/BusinessLogicLayer.php';
         }
 
         public static function add_update_Lead( $action, 
+                                                $ld_id, 
                                                 $ld_name, 
                                                 $ld_phone, 
                                                 $prod_id, 
                                                 $prod_name, 
                                                 &$errorInInput) {
             try {
-                    $Lead = new Lead(0, $ld_name, $ld_phone, $prod_id, $prod_name, $errorInInput);
+                    $Lead = new Lead($ld_id, $ld_name, $ld_phone, $prod_id, $prod_name, $errorInInput);
                     if ($errorInInput != "") { //error found in data members of lead object
                         return;
                     }
