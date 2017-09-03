@@ -1,9 +1,9 @@
 var crmGeneral = (function() {
     var app = {
         debugMode: true,   
-        crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
+        //crmApi: 'http://localhost:8080/joint/crm/server/crmAPI.php',
         //crmApi: 'http://localhost/crm/server/crmAPI.php',
-        //crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
+        crmApi: 'http://localhost/joint/crm/server/crmAPI.php',
     }
 
 
@@ -49,13 +49,14 @@ var crmGeneral = (function() {
                     }
     
                     var leadsArray = [];
+                    var cl = CreateLead();
                     for (let i = 0; i < data.length; i++) {
-                        leadsArray.push(new Lead(data[i].id, 
-                                                data[i].lead_name,
-                                                data[i].lead_phone,
-                                                data[i].product_id,
-                                                data[i].product_name,
-                                                ));
+                        leadsArray.push(new cl.Lead(data[i].id, 
+                                                        data[i].lead_name,
+                                                        data[i].lead_phone,
+                                                        data[i].product_id,
+                                                        data[i].product_name,
+                                                        ));
                     }      
                     $.ajax('../templates/lead-template.html').done(function(data) {
                         $("#leads").html("");
@@ -85,7 +86,8 @@ var crmGeneral = (function() {
             }
             data = JSON.parse(data);
             for(let i=0; i < data.length; i++) {
-                $("#ProductDDL").append(new Option(data[i].name, data[i].id + ',' + data[i].name));
+                // $("#ProductDDL").append(new Option(data[i].name, data[i].id + ',' + data[i].name));
+                $("#ProductDDL").append(new Option(data[i].name, data[i].id));
             }
         });
     }
@@ -99,11 +101,13 @@ var crmGeneral = (function() {
             var leadPhone = $(this).find('td:nth-child(3)').text();
             var productID = $(this).find('td:nth-child(4)').text();
             var productName = $(this).find('td:nth-child(5)').text();
-            var lead = new Lead(leadNumber, 
-                                leadName,
-                                leadPhone,
-                                productID,
-                                productName);
+            var cl =  CreateLead();
+            console.log(cl);
+            var lead = new cl.Lead( leadNumber, 
+                                    leadName,
+                                    leadPhone,
+                                    productID,
+                                    productName);
             $.ajax('../templates/create-lead-template.html').done(function(data) {
                 $("#CreateUpdateDivFields").html(""); 
                 $('#CreateUpdateDivFields').prepend(data);
@@ -113,8 +117,12 @@ var crmGeneral = (function() {
                 $("#leadTitle").text("Lead# being updated: " + lead.id).show();
                 $("#btnUpdateLead").show();
                 Get_Products();
-                $("#ProductDDL").val(lead.product_id);
+                //$("#ProductDDL").val(lead.product_id);
             });
+            console.log($("#ProductDDL"));
+            console.log($("#ProductDDL").val);
+            $("#ProductDDL").val("9");
+
 
         })
     }
@@ -134,13 +142,6 @@ var crmGeneral = (function() {
          })
         }
 
-    function Lead(id, lead_name, lead_phone, product_id, product_name) {
-        this.id = id;
-        this.lead_name = lead_name;
-        this.lead_phone = lead_phone;
-        this.product_id = product_id;
-        this.product_name = product_name;
-    }
 
     //write same generic add functionfor all crm objects
     $('#frmCUD').on("submit", function (e) {   
