@@ -25,25 +25,26 @@ h1, h3 {
 }
 
 
-#tblCUD td {
+
+#tblCUD > tbody > tr > td {
+                 
              border-top: none;
              margin-bottom: 5px;
              
-        td.title {
-            width: 12%;
-            font-weight: 700;
-        }
+                .title { background-color: cyan;
+                width: 12%;
+                font-weight: 700;
+                }
 
-        td.content {
-            width: 45%;
+                .content {
+                width: 45%;
+                }
+        
+                .error-td {
+                width: 43%;
+                }
+        
         }
-    
-        td.error-td {
-            width: 43%;
-    }
-    
-
-}
       
 #frmCUD label.error {
         background:url("../images/error.gif") no-repeat  left top;
